@@ -1,0 +1,113 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="p-4 m-4">
+
+
+        <div class="col-lg-5 rounded mx-auto border pt-4">
+            <div class="text-center col">
+
+                <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Shopping_cart_with_food_clip_art_2.svg/307px-Shopping_cart_with_food_clip_art_2.svg.png" alt=""
+                class="" style="height: 150px;">
+            <!-- <hr> -->
+            <div> <h3 class="alert alert-success border bounded">Therapist Profile</h3></div>
+            <hr>
+            </div>
+            <h3 hidden class="alert alert-light border rounded">Create A Profile</h3>
+            <form action="/therapistpro" method="POST">
+
+
+                    {% csrf_token %}
+                                <!-- firstname -->
+                <div class="form-group">
+                    <label for="">TITLE</label>
+                    <input type="text" name="title"value=""
+                      class="form-control form-control-sm"
+                     placeholder="">
+                </div>
+
+                <!-- last name -->
+                <div class="form-group">
+                    <label for="">Credentials</label>
+                    <input type="text" name="credentials" value=""
+                    class="form-control form-control-sm"
+                    >
+                </div>
+
+                <!-- phone -->
+                <div class="form-group">
+                    <label for="">Experience</label>
+                    <input type="text" name="experience"
+                    id="" class="form-control form-control-sm"
+                    value=""
+
+
+                    >
+                </div>
+                <!-- email -->
+                <div class="form-group">
+                    <label for="">Sex</label>
+                    <input  type="text" name="sex"
+                    value=""
+                    class=" form-control-sm form-control" >
+                </div>
+
+
+                <!-- password -->
+                <div class="form-group">
+                    <label for="">Age</label>
+                    <input type="text"
+                    name="age"
+
+                     class="form-control form-control-sm">
+                </div>
+
+                 <div class="form-group">
+                    <label for="">Short Bio</label>
+                    <input type="text"
+                    name="shortbio"
+
+                     class="form-control form-control-sm">
+                </div>
+
+                 <div class="form-group">
+                    <label for="">Background</label>
+                    <input type="text"
+                    name="background"
+
+                     class="form-control form-control-sm">
+                </div>
+
+                 <div class="form-group">
+                    <label for="">Personal Belief</label>
+                    <input type="text"
+                    name="personalbelief"
+
+                     class="form-control form-control-sm">
+                </div>
+
+                 <div class="form-group">
+                    <label for="">Website</label>
+                    <input type="text"
+                    name="website"
+
+                     class="form-control form-control-sm">
+                </div>
+
+                <hr>
+                <div class="form-group">
+                    <a href="/therapistsoc"><input class="btn btn-sm btn-info" type="submit" value="Create An Account "></a>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

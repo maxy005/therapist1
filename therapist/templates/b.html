@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+  {% block content %}
+
+
+{% for x in thera%}
+<div class="list-group">
+  <a href="/g" class="list-group-item list-group-item-action active">
+
+  </a>
+
+  <div class="card-body">
+    <h5 class="card-title">{{x.first_name}}</h5>
+    <p class="card-text">{{x.last_name}}</p>
+
+   <!-- {{x|is_in_cart:request.session.cart}} -->
+
+
+  </div>
+
+
+</div>
+{% endfor %}
+{% endblock %}

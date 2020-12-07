@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+  {% block content %}
+
+
+
+<div class="col-lg-3 mx-auto ">
+      <div class="list-group">
+          {% for x in thera %}
+  <a href="/p?x={{x.id}}" class="list-group-item list-group-item-action active">
+    {{x.first_name}}
+
+
+  </a>
+          {% endfor %}
+  </div>
+
+
+  </div>
+
+
+</div>
+<div  class="col-lg-9 mx-auto">
+        <div class="row mx-auto">
+      {% for y in therapistpro%}
+    <div class="card mx-auto" style="width: 18rem;" id={{y.id}}>
+
+
+
+  <div class="card-body">
+    <h5 class="card-title">{{y.title}}</h5>
+    <p class="card-text">{{y.experience}}</p>
+    <p class="card-text">{{y.sex}}</p>
+      <p class="card-text">{{y.age}}</p>
+      <p class="card-text">{{y.shortbio}}</p>
+      <p class="card-text">{{y.website}}</p>
+
+
+
+
+  </div>
+{% endfor %}
+
+</div>
+        </div>
+</div>
+
+{% endblock %}
