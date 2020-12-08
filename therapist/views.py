@@ -41,11 +41,12 @@ class signup(View):
             email =email,
             password_hash =make_password(password),
             created_at=timezone.now(),
-            is_valid = False
+            is_valid=False
+
         )
 
         isexists =th.isexists()
-        print(th.is_valid)
+        th.is_valid=False
         print("here the therapist is false vadu thay che !......")
         th.therapist()
 
@@ -76,14 +77,11 @@ class signup(View):
             )
 
             email.send(fail_silently=False)
-            if th is not None and token_generator.check_token(th, token_generator.make_token(th)):
-                print(" here only the therapist is created ...")
 
-                th.is_valid = True
-                th.therapist()
-                login1()
+
+
+
             return redirect("homepage")
-
         else:
             data = {
                 'error': error_message,
@@ -96,7 +94,27 @@ class signup(View):
 
 class verification(View):
     def get(self,request,uidb64,token):
+        try:
+            uid = force_bytes(urlsafe_base64_decode(uidb64))
+           # th=therapist.get_therapist_all()
+            th=therapist.get_therapist_all().get(pk=uid)
+            print(th,"here is the th ........................")
+        except(TypeError, ValueError, OverflowError, th.DoesNotExist):
+            th = None
+        if th is not None and token_generator.check_token(th,token_generator.make_token(th)):
+            print("if ma jay che khara???????????")
+            th.is_valid = True
+            th.therapist()
+            login1()
+
+            return HttpResponse('Your account has been activate successfully')
+        else:
+            return HttpResponse('Activation link is invalid!')
+
         return redirect("login2")
+
+
+
 
 class email_verify_otp(View):
     def post(self,request):
@@ -109,10 +127,14 @@ class login1(View):
         email=postdata.get('email')
         password=postdata.get('password')
         therapist1=therapist.get_email(email)
+        th=therapist.get_email(email)
         error_message=None
+        print(th.first_name)
+        print(th.is_valid)
         if therapist1:
             c=check_password(password,therapist1.password_hash)
-            if c :
+            if c and th.is_valid:
+
                 request.session['therapist1.e']=therapist1.email
                 request.session['therapist1.p']=therapist1.password_hash
                 print(request.session.get('therapist1.e'))
